@@ -26,17 +26,15 @@ small, predictable and safe to hand to a model.
 ## What you need to provide
 
 Read "provide" as: install it if it is software, otherwise put it into your
-`.env` file. `npm run login` prompts for your phone number and 2FA password (at
-the prompt - neither is stored in `.env`) and writes `TG_API_ID` / `TG_API_HASH`
-into `.env` for you. Everything else in the table is a line you add to that same
-file; see [Install](#install) for the copy step.
+`.env` file. `npm run login` writes `TG_API_ID` / `TG_API_HASH` into `.env` for
+you; the QR flow (`npm run login:qr`) reads all of its values from there and
+never prompts. See [Install](#install) for the copy step.
 
 | | |
 |---|---|
 | **A Telegram account** | this runs *as you* - it is a userbot, not a bot account |
-| **`api_id` + `api_hash`** | from <https://my.telegram.org> -> *API development tools*. You create the app once; Telegram may take a while to approve it, and the form asks for an app name and platform - anything sensible works |
-| **Your phone number** | for the login step, plus the code Telegram sends to your app |
-| **Your 2FA password** | only if two-step verification is enabled on the account |
+| **`api_id` + `api_hash`** | from <https://my.telegram.org> -> *API development tools*. You create the app once; Telegram may take a while to approve it, and the form asks for an app name and platform - anything sensible works. `.env` values |
+| **Your phone number** | asked once by `npm run login`, at the prompt, together with the login code Telegram sends. The QR flow never asks for it - you scan with your phone instead. Not a `.env` value |
 | **Node 20+** | or Docker, if you would rather not install anything on the host. Software to install - not a `.env` value |
 | **An MCP client** | an agent that speaks MCP (Claude Code, Cursor, Codex, OpenClaw, ...). Install it and register this server with it. Software to install - not a `.env` value. Only needed to let an agent drive this; the CLI works on its own |
 
@@ -44,6 +42,7 @@ Optional, and worth doing - all of these are `.env` values:
 
 | | |
 |---|---|
+| **`TG_2FA`** | your two-step password, if the account has one. The QR login reads it from `.env`; `npm run login` prompts for it instead |
 | **`MCP_TOKEN`** | any random string. Without it the HTTP endpoint is unauthenticated |
 | **`NOTIFY_CHAT`** | a chat title for marker notifications; defaults to your own Saved Messages |
 | **`SEND_ALLOWLIST`** | the chat titles an agent is allowed to send to |
@@ -67,6 +66,10 @@ serves an auto-refreshing QR code over HTTP:
 ```bash
 QR_PORT=8791 npm run login:qr     # open http://127.0.0.1:8791/ and scan
 ```
+
+The QR flow never asks for a phone number - you scan with the phone. If the
+account has two-step verification, put the password in `.env` as `TG_2FA`
+before running it.
 
 ## CLI
 
