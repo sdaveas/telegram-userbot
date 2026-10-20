@@ -1,0 +1,15 @@
+node_modules/
+
+# --- Secrets / credentials (never commit) ---
+.env
+.env.*
+!.env.example
+*.env
+deploy/config/
+session.txt
+*.session
+
+# --- Runtime state ---
+*.log
+logs/
+tg-marker-seen.json

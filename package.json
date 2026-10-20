@@ -1,0 +1,55 @@
+{
+  "name": "telegram-userbot",
+  "version": "0.1.0",
+  "description": "Telegram userbot + MCP server over MTProto (GramJS): read, search, send and react as your own account - no browser, no AI.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Stelios Daveas <sdaveas@gmail.com>",
+  "keywords": [
+    "telegram",
+    "userbot",
+    "mtproto",
+    "gramjs",
+    "mcp",
+    "model-context-protocol"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdaveas/telegram-userbot.git"
+  },
+  "homepage": "https://github.com/sdaveas/telegram-userbot#readme",
+  "bugs": {
+    "url": "https://github.com/sdaveas/telegram-userbot/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "src",
+    "deploy",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "bin": {
+    "tg-send": "src/send.mjs",
+    "tg-watch": "src/watch.mjs",
+    "tg-mcp": "src/mcp.mjs"
+  },
+  "scripts": {
+    "login": "node src/login.mjs",
+    "login:qr": "node src/login-qr.mjs",
+    "start": "node src/watch.mjs",
+    "watch": "node src/watch.mjs",
+    "send": "node src/send.mjs",
+    "mcp": "node src/mcp.mjs",
+    "reactions": "node src/reactions-watch.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "qrcode": "^1.5.4",
+    "telegram": "^2.26.22",
+    "zod": "^4.6.7"
+  }
+}

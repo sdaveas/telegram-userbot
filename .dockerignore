@@ -1,0 +1,12 @@
+node_modules
+.git
+.github
+.env
+.env.*
+!.env.example
+session.txt
+*.session
+deploy/config
+test
+*.log
+tg-marker-seen.json
