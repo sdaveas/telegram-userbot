@@ -25,16 +25,22 @@ small, predictable and safe to hand to a model.
 
 ## What you need to provide
 
+Read "provide" as: install it if it is software, otherwise put it into your
+`.env` file. `npm run login` prompts for your phone number and 2FA password (at
+the prompt - neither is stored in `.env`) and writes `TG_API_ID` / `TG_API_HASH`
+into `.env` for you. Everything else in the table is a line you add to that same
+file; see [Install](#install) for the copy step.
+
 | | |
 |---|---|
 | **A Telegram account** | this runs *as you* - it is a userbot, not a bot account |
 | **`api_id` + `api_hash`** | from <https://my.telegram.org> -> *API development tools*. You create the app once; Telegram may take a while to approve it, and the form asks for an app name and platform - anything sensible works |
 | **Your phone number** | for the login step, plus the code Telegram sends to your app |
 | **Your 2FA password** | only if two-step verification is enabled on the account |
-| **Node 20+** | or Docker, if you would rather not install anything on the host |
-| **An MCP client** | only if you want an agent to drive it - the CLI works on its own |
+| **Node 20+** | or Docker, if you would rather not install anything on the host. Software to install - not a `.env` value |
+| **An MCP client** | an agent that speaks MCP (Claude Code, Cursor, Codex, OpenClaw, ...). Install it and register this server with it. Software to install - not a `.env` value. Only needed to let an agent drive this; the CLI works on its own |
 
-Optional, and worth doing:
+Optional, and worth doing - all of these are `.env` values:
 
 | | |
 |---|---|
@@ -42,8 +48,9 @@ Optional, and worth doing:
 | **`NOTIFY_CHAT`** | a chat title for marker notifications; defaults to your own Saved Messages |
 | **`SEND_ALLOWLIST`** | the chat titles an agent is allowed to send to |
 
-What you must **never** share: `session.txt`, your `api_hash`, and your
-`MCP_TOKEN`. The session file is a complete login to your account.
+What you must **never** share: your `.env` file (gitignored - it holds the
+credentials above), `session.txt`, your `api_hash`, and your `MCP_TOKEN`. The
+session file is a complete login to your account.
 
 ## Install
 
